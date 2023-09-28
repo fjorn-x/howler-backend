@@ -1,8 +1,11 @@
 package com.hamza.howler.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
+@Table(name = "likes")
 public class Like {
 
     @Id
