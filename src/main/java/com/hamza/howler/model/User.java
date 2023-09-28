@@ -4,14 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
 public class User {
 
     @Id
@@ -22,13 +20,14 @@ public class User {
     private String location;
     private String website;
     private String birthDate;
+    private String profileImage;
+    private String bannerImage;
+    private String bio;
 
     @Email
     private String email;
     private String password;
     private String mobile;
-    private String profileImage;
-    private String bannerImage;
     private boolean isRegUser;
     private boolean isLoginWithGoogle;
 

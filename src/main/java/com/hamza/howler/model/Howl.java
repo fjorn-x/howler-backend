@@ -3,6 +3,7 @@ package com.hamza.howler.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class Howl {
     private String content;
     private String image;
     private String video;
+    private String location;
 
     @OneToMany(mappedBy = "howl",cascade = CascadeType.ALL)
     private List<Like> likes=new ArrayList<>();
@@ -34,4 +36,6 @@ public class Howl {
 
     private boolean isReply;
     private boolean isHowl;
+
+    private LocalDateTime createdAt;
 }
