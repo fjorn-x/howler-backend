@@ -13,8 +13,8 @@ public class HowlDTOMapper {
     public static HowlDTO toHowlDTO(Howl howl, User user){
         HowlDTO howlDTO=new HowlDTO();
         UserDTO userDTO=UserDTOMapper.toUserDTO(howl.getUser());
-        boolean isLiked= HowlUtil.isLikedByRegUser(user,howl);
-        boolean isRetweeted=HowlUtil.isRetweetedByRegUser(user,howl);
+        boolean isLiked= HowlUtil.isLikedByReqUser(user,howl);
+        boolean isRetweeted=HowlUtil.isRetweetedByReqUser(user,howl);
         List<Long> retweetUsersId=new ArrayList<>();
         for (User user1:howl.getRetweetUsers()){
             retweetUsersId.add(user1.getId());
@@ -49,8 +49,8 @@ public class HowlDTOMapper {
     private static HowlDTO toReplyHowlDTO(Howl howl, User user) {
         HowlDTO howlDTO=new HowlDTO();
         UserDTO userDTO=UserDTOMapper.toUserDTO(howl.getUser());
-        boolean isLiked= HowlUtil.isLikedByRegUser(user,howl);
-        boolean isRetweeted=HowlUtil.isRetweetedByRegUser(user,howl);
+        boolean isLiked= HowlUtil.isLikedByReqUser(user,howl);
+        boolean isRetweeted=HowlUtil.isRetweetedByReqUser(user,howl);
         List<Long> retweetUsersId=new ArrayList<>();
         for (User user1:howl.getRetweetUsers()){
             retweetUsersId.add(user1.getId());

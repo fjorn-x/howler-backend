@@ -17,7 +17,7 @@ public class UserDTO {
     private String mobile;
     private String bannerImage;
     private String bio;
-    private boolean isRegUser;
+    private boolean isReqUser;
     private boolean isLoginWithGoogle;
     private List<UserDTO> followers=new ArrayList<>();
     private List<UserDTO> followings=new ArrayList<>();
