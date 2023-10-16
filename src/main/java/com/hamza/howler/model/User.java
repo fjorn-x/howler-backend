@@ -28,7 +28,7 @@ public class User {
     private String email;
     private String password;
     private String mobile;
-    private boolean isRegUser;
+    private boolean isReqUser;
     private boolean isLoginWithGoogle;
 
     @JsonIgnore

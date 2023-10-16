@@ -5,7 +5,7 @@ import com.hamza.howler.model.Like;
 import com.hamza.howler.model.User;
 
 public class HowlUtil {
-    public static boolean isLikedByRegUser(User user, Howl howl){
+    public static boolean isLikedByReqUser(User user, Howl howl){
         for(Like like:howl.getLikes()){
             if(like.getUser().getId().equals(user.getId())){
                 return true;
@@ -14,7 +14,7 @@ public class HowlUtil {
         return false;
     }
 
-    public static boolean isRetweetedByRegUser(User regUser, Howl howl){
+    public static boolean isRetweetedByReqUser(User regUser, Howl howl){
         for (User user :howl.getRetweetUsers()){
             if(user.getId().equals(regUser.getId())){
                 return true;

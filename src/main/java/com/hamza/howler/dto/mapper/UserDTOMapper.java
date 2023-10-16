@@ -25,7 +25,7 @@ public class UserDTOMapper {
         return userDTO;
     }
 
-    private static List<UserDTO> toUserDTOS(List<User> followers) {
+    public static List<UserDTO> toUserDTOS(List<User> followers) {
         List<UserDTO> userDTOS=new ArrayList<>();
         for(User user : followers){
             UserDTO userDTO=new UserDTO();
