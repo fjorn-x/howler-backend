@@ -14,8 +14,8 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
-import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -38,11 +38,11 @@ public class SecurityConfig {
             @Override
             public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
                 CorsConfiguration cfg=new CorsConfiguration();
-                cfg.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+                cfg.setAllowedOrigins(List.of("http://localhost:3000"));
                 cfg.setAllowedMethods(Collections.singletonList("*"));
                 cfg.setAllowCredentials(true);
                 cfg.setAllowedHeaders(Collections.singletonList("*"));
-                cfg.setExposedHeaders(Arrays.asList("Authorization"));
+                cfg.setExposedHeaders(List.of("Authorization"));
                 cfg.setMaxAge(3600L);
                 return cfg;
             }
@@ -51,7 +51,6 @@ public class SecurityConfig {
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder (){
-
         return new BCryptPasswordEncoder();
     }
 

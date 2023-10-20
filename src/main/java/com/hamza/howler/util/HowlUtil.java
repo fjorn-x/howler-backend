@@ -14,9 +14,9 @@ public class HowlUtil {
         return false;
     }
 
-    public static boolean isRetweetedByReqUser(User regUser, Howl howl){
+    public static boolean isRetweetedByReqUser(User reqUser, Howl howl){
         for (User user :howl.getRetweetUsers()){
-            if(user.getId().equals(regUser.getId())){
+            if(user.getId().equals(reqUser.getId())){
                 return true;
             }
         }
