@@ -52,7 +52,7 @@ public class UserController {
     }
 
     @PutMapping("/{userId}/follow")
-    public ResponseEntity<UserDTO> updateUser(@PathVariable Long userId, @RequestHeader("Authorization") String jwt)throws UserException{
+    public ResponseEntity<UserDTO> followUser(@PathVariable Long userId, @RequestHeader("Authorization") String jwt)throws UserException{
         User reqUser= userService.findUserProfileByJwt(jwt);
         User user=userService.followUser(userId,reqUser);
         UserDTO userDTO= UserDTOMapper.toUserDTO(user);

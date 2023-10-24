@@ -63,7 +63,7 @@ public class HowlController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/")
+    @GetMapping("/all")
     public ResponseEntity<List<HowlDTO>> getAllHowls(@RequestHeader("Authorization") String jwt) throws UserException, HowlException {
         User user=userService.findUserProfileByJwt(jwt);
         List<Howl> howls=howlService.findAllHowl();

@@ -4,6 +4,7 @@ import com.hamza.howler.exceptions.UserException;
 import com.hamza.howler.model.User;
 import com.hamza.howler.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +15,8 @@ public class UserServiceImplementation implements UserService{
     private UserRepository userRepository;
     @Autowired
     private JwtProvider jwtProvider;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public User findUserById(Long userId) throws UserException {
@@ -75,7 +78,15 @@ public class UserServiceImplementation implements UserService{
 
     @Override
     public List<User> searchUser(String query) {
-
         return userRepository.searchUser(query);
+    }
+    @Override
+    public boolean oldPasswordIsValid(User user,String oldPassword){
+        return passwordEncoder.matches(oldPassword, user.getPassword());
+    }
+    @Override
+    public void changePassword(User user,String newPassword){
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
     }
 }

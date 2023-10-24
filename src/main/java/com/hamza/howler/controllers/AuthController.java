@@ -1,12 +1,15 @@
 package com.hamza.howler.controllers;
 
-import com.hamza.howler.services.JwtProvider;
 import com.hamza.howler.exceptions.UserException;
 import com.hamza.howler.model.User;
 import com.hamza.howler.model.Verification;
 import com.hamza.howler.repository.UserRepository;
+import com.hamza.howler.request.PasswordChangeRequest;
+import com.hamza.howler.response.ApiResponse;
 import com.hamza.howler.response.AuthResponse;
 import com.hamza.howler.services.CustomUserDetailsServiceImplementation;
+import com.hamza.howler.services.JwtProvider;
+import com.hamza.howler.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +19,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
@@ -29,8 +29,9 @@ public class AuthController {
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
-
     private JwtProvider jwtProvider;
+    @Autowired
+    private UserService userService;
     @Autowired
     private CustomUserDetailsServiceImplementation customUserDetailsService;
     @PostMapping("/signup")
@@ -71,6 +72,17 @@ public class AuthController {
         AuthResponse res=new AuthResponse(jwt,true);
         return new ResponseEntity<>(res, HttpStatus.ACCEPTED);
 
+    }
+
+    @PostMapping("/change-password")
+    public ResponseEntity<ApiResponse> changePassword(@RequestBody PasswordChangeRequest passwordChangeRequest, @RequestHeader("Authorization") String jwt)throws UserException{
+        User user=userService.findUserProfileByJwt(jwt);
+        if(!userService.oldPasswordIsValid(user,passwordChangeRequest.getOldPassword())){
+            throw new UserException("Old password is incorrect");
+        }
+        userService.changePassword(user,passwordChangeRequest.getNewPassword());
+        ApiResponse res=new ApiResponse("Password Changed Successfully",true);
+        return new ResponseEntity<>(res,HttpStatus.OK);
     }
 
     private Authentication authenticate(String email, String password) {

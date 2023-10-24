@@ -59,10 +59,12 @@ public class HowlServiceImplementation implements HowlService{
     @Override
     public void deleteHowlById(Long howlId, Long userId) throws HowlException, UserException {
         Howl howl=findById(howlId);
-        if(!userId.equals(howl.getId())){
+        if(userId.equals(howl.getUser().getId())){
+            howlRepository.delete(howl);
+
+        }else{
             throw new UserException("You cannot delete another user's howl");
         }
-        howlRepository.delete(howl);
     }
 
     @Override
@@ -84,7 +86,7 @@ public class HowlServiceImplementation implements HowlService{
         howl.setHowl(false);
         Howl savedReply=howlRepository.save(howl);
 //    replyFor.getReplyHowl().add(savedReply);
-        howl.getReplyHowl().add((savedReply));
+        howl.getReplyHowl().add(savedReply);
         howlRepository.save(replyFor);
 
         return replyFor;

@@ -29,7 +29,7 @@ public class LikeController {
         User user= userService.findUserProfileByJwt(jwt);
         Like like=likeService.likeHowl(howlId,user);
         LikeDTO likeDTO= LikeDTOMapper.toLikeDTO(like,user);
-        return new ResponseEntity<LikeDTO>(likeDTO, HttpStatus.CREATED);
+        return new ResponseEntity<>(likeDTO, HttpStatus.CREATED);
     }
 
     @GetMapping("/{howlId}")
