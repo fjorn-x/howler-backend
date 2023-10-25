@@ -23,6 +23,8 @@ public class User {
     private String profileImage;
     private String bannerImage;
     private String bio;
+    private String profession;
+
 
     @Email
     private String email;

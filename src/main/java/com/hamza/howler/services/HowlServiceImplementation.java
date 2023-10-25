@@ -67,10 +67,6 @@ public class HowlServiceImplementation implements HowlService{
         }
     }
 
-    @Override
-    public Howl removeFromRetweet(Long howlId, User user) throws HowlException, UserException {
-        return null;
-    }
 
     @Override
     public Howl createReply(HowlReplyRequest req, User user) throws HowlException {
@@ -85,8 +81,8 @@ public class HowlServiceImplementation implements HowlService{
         howl.setReply(true);
         howl.setHowl(false);
         Howl savedReply=howlRepository.save(howl);
-//    replyFor.getReplyHowl().add(savedReply);
-        howl.getReplyHowl().add(savedReply);
+    replyFor.getReplyHowl().add(savedReply);
+//        howl.getReplyHowl().add(savedReply);
         howlRepository.save(replyFor);
 
         return replyFor;

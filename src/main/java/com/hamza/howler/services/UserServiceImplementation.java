@@ -39,6 +39,9 @@ public class UserServiceImplementation implements UserService{
         if(user.getFullName()!=null){
             existingUser.setFullName(user.getFullName());
         }
+        if(user.getProfession()!=null){
+            existingUser.setProfession(user.getProfession());
+        }
         if(user.getProfileImage()!=null){
             existingUser.setProfileImage(user.getProfileImage());
         }
@@ -57,7 +60,6 @@ public class UserServiceImplementation implements UserService{
         if(user.getBio()!=null){
             existingUser.setBio((user.getBio()));
         }
-
         return userRepository.save(existingUser);
     }
 

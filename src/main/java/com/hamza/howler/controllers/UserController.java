@@ -31,7 +31,6 @@ public class UserController {
         User reqUser= userService.findUserProfileByJwt(jwt);
         User user=userService.findUserById(userId);
         UserDTO userDTO= UserDTOMapper.toUserDTO(user);
-
         userDTO.setReqUser(UserUtil.isReqUser(reqUser,user));
         userDTO.setFollowed(UserUtil.isFollowedByReqUser(reqUser,user));
         return new ResponseEntity<>(userDTO, HttpStatus.ACCEPTED);
