@@ -14,7 +14,9 @@ public interface HowlService {
      Howl createHowl(Howl req, User user) throws UserException;
      List<Howl> findAllHowl();
 
-     Howl retweet(Long howlId,User user) throws UserException, HowlException;
+     List<Howl> getReplyHowls();
+
+     Howl retweet(Long howlId, User user) throws UserException, HowlException;
      Howl findById(Long howlId) throws HowlException;
      void deleteHowlById(Long howlId,Long userId) throws HowlException, UserException;
 //     Howl removeFromRetweet(Long howlId,User user) throws HowlException,UserException;

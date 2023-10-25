@@ -5,9 +5,9 @@ import com.hamza.howler.model.Like;
 import com.hamza.howler.model.User;
 
 public class HowlUtil {
-    public static boolean isLikedByReqUser(User user, Howl howl){
+    public static boolean isLikedByReqUser(User reqUser, Howl howl){
         for(Like like:howl.getLikes()){
-            if(like.getUser().getId().equals(user.getId())){
+            if(like.getUser().getId().equals(reqUser.getId())){
                 return true;
             }
         }

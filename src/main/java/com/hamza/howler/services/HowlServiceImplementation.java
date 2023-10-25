@@ -17,8 +17,7 @@ public class HowlServiceImplementation implements HowlService{
 
     @Autowired
     private HowlRepository howlRepository;
-
-
+    
 
     @Override
     public Howl createHowl(Howl req, User user) throws UserException {
@@ -41,6 +40,11 @@ public class HowlServiceImplementation implements HowlService{
     }
 
     @Override
+    public List<Howl> getReplyHowls(){
+        return howlRepository.findAllByIsReplyTrueOrderByCreatedAtDesc();
+    }
+
+    @Override
     public Howl retweet(Long howlId, User user) throws UserException, HowlException {
         Howl howl=findById(howlId);
         if(howl.getRetweetUsers().contains(user)){
@@ -53,7 +57,7 @@ public class HowlServiceImplementation implements HowlService{
 
     @Override
     public Howl findById(Long howlId) throws HowlException {
-        return howlRepository.findById(howlId).orElseThrow();
+        return howlRepository.findById(howlId).orElseThrow(()-> new HowlException("Howl not found with id"+howlId));
     }
 
     @Override
@@ -61,7 +65,6 @@ public class HowlServiceImplementation implements HowlService{
         Howl howl=findById(howlId);
         if(userId.equals(howl.getUser().getId())){
             howlRepository.delete(howl);
-
         }else{
             throw new UserException("You cannot delete another user's howl");
         }
@@ -87,6 +90,8 @@ public class HowlServiceImplementation implements HowlService{
 
         return replyFor;
     }
+
+
 
     @Override
     public List<Howl> getUserHowls(User user) {

@@ -30,8 +30,8 @@ public class User {
     private String email;
     private String password;
     private String mobile;
-    private boolean isReqUser;
-    private boolean isLoginWithGoogle;
+    private boolean req_user;
+    private boolean login_with_google;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)

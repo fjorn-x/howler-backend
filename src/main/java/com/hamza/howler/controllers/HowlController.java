@@ -70,16 +70,26 @@ public class HowlController {
         List<HowlDTO> howlDTOS= HowlDTOMapper.toHowlDTOS(howls,user);
         return new ResponseEntity<>(howlDTOS, HttpStatus.ACCEPTED);
     }
+
+    @GetMapping("/reply/howls")
+    public ResponseEntity<List<HowlDTO>> getAllReplyHowls(@RequestHeader("Authorization") String jwt) throws UserException, HowlException {
+        User user=userService.findUserProfileByJwt(jwt);
+        List<Howl> howls=howlService.getReplyHowls();
+        List<HowlDTO> howlDTOS= HowlDTOMapper.toHowlDTOS(howls,user);
+        return new ResponseEntity<>(howlDTOS, HttpStatus.ACCEPTED);
+    }
+
+
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<HowlDTO>> getUsersHowls(@PathVariable Long userId,@RequestHeader("Authorization") String jwt) throws UserException, HowlException {
-        User user=userService.findUserProfileByJwt(jwt);
+        User user=userService.findUserById(userId);
         List<Howl> howls=howlService.getUserHowls(user);
         List<HowlDTO> howlDTOS= HowlDTOMapper.toHowlDTOS(howls,user);
         return new ResponseEntity<>(howlDTOS, HttpStatus.ACCEPTED);
     }
     @GetMapping("/user/{userId}/likes")
     public ResponseEntity<List<HowlDTO>> findHowlByLikesContainsUser(@PathVariable Long userId,@RequestHeader("Authorization") String jwt) throws UserException, HowlException {
-        User user=userService.findUserProfileByJwt(jwt);
+        User user=userService.findUserById(userId);
         List<Howl> howls=howlService.findByLikesContainsUser(user);
         List<HowlDTO> howlDTOS= HowlDTOMapper.toHowlDTOS(howls,user);
         return new ResponseEntity<>(howlDTOS, HttpStatus.ACCEPTED);

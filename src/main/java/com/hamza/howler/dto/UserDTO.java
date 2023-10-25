@@ -18,8 +18,8 @@ public class UserDTO {
     private String mobile;
     private String bannerImage;
     private String bio;
-    private boolean reqUser;
-    private boolean loginWithGoogle;
+    private boolean req_user;
+    private boolean login_with_google;
     private List<UserDTO> followers=new ArrayList<>();
     private List<UserDTO> followings=new ArrayList<>();
     private boolean followed;

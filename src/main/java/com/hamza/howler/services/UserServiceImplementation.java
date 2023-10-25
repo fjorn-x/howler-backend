@@ -34,33 +34,33 @@ public class UserServiceImplementation implements UserService{
     }
 
     @Override
-    public User updateUser(Long userId, User user) throws UserException {
-        User existingUser=findUserById(userId);
-        if(user.getFullName()!=null){
-            existingUser.setFullName(user.getFullName());
+    public User updateUser(Long userId, User req) throws UserException {
+        User user=findUserById(userId);
+        if(req.getFullName()!=null){
+            user.setFullName(req.getFullName());
         }
-        if(user.getProfession()!=null){
-            existingUser.setProfession(user.getProfession());
+        if(req.getProfession()!=null){
+            user.setProfession(req.getProfession());
         }
-        if(user.getProfileImage()!=null){
-            existingUser.setProfileImage(user.getProfileImage());
+        if(req.getProfileImage()!=null){
+            user.setProfileImage(req.getProfileImage());
         }
-        if(user.getBannerImage()!=null){
-            existingUser.setBannerImage(user.getBannerImage());
+        if(req.getBannerImage()!=null){
+            user.setBannerImage(req.getBannerImage());
         }
-        if(user.getBirthDate()!=null){
-            existingUser.setBirthDate((user.getBirthDate()));
+        if(req.getBirthDate()!=null){
+            user.setBirthDate(req.getBirthDate());
         }
-        if(user.getWebsite()!=null){
-            existingUser.setWebsite((user.getWebsite()));
+        if(req.getWebsite()!=null){
+            user.setWebsite(req.getWebsite());
         }
-        if(user.getLocation()!=null){
-            existingUser.setLocation((user.getLocation()));
+        if(req.getLocation()!=null){
+            user.setLocation(req.getLocation());
         }
-        if(user.getBio()!=null){
-            existingUser.setBio((user.getBio()));
+        if(req.getBio()!=null){
+            user.setBio(req.getBio());
         }
-        return userRepository.save(existingUser);
+        return userRepository.save(user);
     }
 
     @Override
