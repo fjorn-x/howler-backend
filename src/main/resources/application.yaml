@@ -1,0 +1,10 @@
+server:
+  port: 5454
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/howlerdb
+    username: root
+    password: Benten10@
+  jpa:
+    hibernate:
+      ddl-auto: update
