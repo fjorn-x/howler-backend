@@ -7,6 +7,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -26,7 +27,7 @@ public class JwtTokenValidator extends OncePerRequestFilter {
         if(authHead!=null){
             String jwt=authHead.substring(7);
 
-//        try{
+        try{
             SecretKey key= Keys.hmacShaKeyFor(JwtConstant.SECRET_KEY.getBytes());
             Claims claims;
             if(Jwts.parserBuilder().setSigningKey(key).build().isSigned(jwt)){
@@ -39,9 +40,9 @@ public class JwtTokenValidator extends OncePerRequestFilter {
             List<GrantedAuthority> auths= AuthorityUtils.commaSeparatedStringToAuthorityList(authorities);
             Authentication authentication=new UsernamePasswordAuthenticationToken(email,null,auths);
             SecurityContextHolder.getContext().setAuthentication(authentication);
-//        }catch (Exception e){
-//            throw new BadCredentialsException(e.getMessage());
-//        }
+        }catch (Exception e){
+            throw new BadCredentialsException(e.getMessage());
+        }
         }
         filterChain.doFilter(request,response);
     }

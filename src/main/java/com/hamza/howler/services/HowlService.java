@@ -11,15 +11,17 @@ import java.util.List;
 
 @Service
 public interface HowlService {
-    public Howl createHowl(Howl req, User user) throws UserException;
-    public List<Howl> findAllHowl();
+     Howl createHowl(Howl req, User user) throws UserException;
+     List<Howl> findAllHowl();
 
-    public Howl retweet(Long howlId,User user) throws UserException, HowlException;
-    public Howl findById(Long howlId) throws HowlException;
-    public void deleteHowlById(Long howlId,Long userId) throws HowlException, UserException;
-    public Howl removeFromRetweet(Long howlId,User user) throws HowlException,UserException;
-    public Howl createReply(HowlReplyRequest req, User user)throws HowlException;
+     List<Howl> getReplyHowls();
 
-    public List<Howl> getUserHowls(User user);
-    public List<Howl> findByLikesContainsUser(User user);
+     Howl retweet(Long howlId, User user) throws UserException, HowlException;
+     Howl findById(Long howlId) throws HowlException;
+     void deleteHowlById(Long howlId,Long userId) throws HowlException, UserException;
+//     Howl removeFromRetweet(Long howlId,User user) throws HowlException,UserException;
+     Howl createReply(HowlReplyRequest req, User user)throws HowlException;
+
+     List<Howl> getUserHowls(User user);
+     List<Howl> findByLikesContainsUser(User user);
 }

@@ -13,13 +13,16 @@ public class UserDTOMapper {
         userDTO.setId(user.getId());
         userDTO.setEmail(user.getEmail());
         userDTO.setFullName(user.getFullName());
+        userDTO.setProfession(user.getProfession());
+        userDTO.setWebsite(user.getWebsite());
         userDTO.setProfileImage(user.getProfileImage());
         userDTO.setBannerImage(user.getBannerImage());
         userDTO.setBio(user.getBio());
         userDTO.setBirthDate(user.getBirthDate());
         userDTO.setFollowers(toUserDTOS(user.getFollowers()));
         userDTO.setFollowings(toUserDTOS(user.getFollowings()));
-        userDTO.setLoginWithGoogle(user.isLoginWithGoogle());
+        userDTO.setLogin_with_google(user.isLogin_with_google());
+        userDTO.setReq_user(user.isReq_user());
         userDTO.setLocation(user.getLocation());
 //        userDTO.setVerified(false);
         return userDTO;

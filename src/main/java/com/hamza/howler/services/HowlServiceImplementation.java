@@ -17,8 +17,7 @@ public class HowlServiceImplementation implements HowlService{
 
     @Autowired
     private HowlRepository howlRepository;
-
-
+    
 
     @Override
     public Howl createHowl(Howl req, User user) throws UserException {
@@ -41,6 +40,11 @@ public class HowlServiceImplementation implements HowlService{
     }
 
     @Override
+    public List<Howl> getReplyHowls(){
+        return howlRepository.findAllByIsReplyTrueOrderByCreatedAtDesc();
+    }
+
+    @Override
     public Howl retweet(Long howlId, User user) throws UserException, HowlException {
         Howl howl=findById(howlId);
         if(howl.getRetweetUsers().contains(user)){
@@ -53,22 +57,20 @@ public class HowlServiceImplementation implements HowlService{
 
     @Override
     public Howl findById(Long howlId) throws HowlException {
-        return howlRepository.findById(howlId).orElseThrow();
+        return howlRepository.findById(howlId).orElseThrow(()-> new HowlException("Howl not found with id"+howlId));
     }
 
     @Override
     public void deleteHowlById(Long howlId, Long userId) throws HowlException, UserException {
         Howl howl=findById(howlId);
-        if(!userId.equals(howl.getId())){
+        if(userId.equals(howl.getUser().getId())){
+//            howlRepository.delete(howl);
+            howlRepository.deleteById(howlId);
+        }else{
             throw new UserException("You cannot delete another user's howl");
         }
-        howlRepository.delete(howl);
     }
 
-    @Override
-    public Howl removeFromRetweet(Long howlId, User user) throws HowlException, UserException {
-        return null;
-    }
 
     @Override
     public Howl createReply(HowlReplyRequest req, User user) throws HowlException {
@@ -83,12 +85,14 @@ public class HowlServiceImplementation implements HowlService{
         howl.setReply(true);
         howl.setHowl(false);
         Howl savedReply=howlRepository.save(howl);
-//    replyFor.getReplyHowl().add(savedReply);
-        howl.getReplyHowl().add((savedReply));
+    replyFor.getReplyHowl().add(savedReply);
+//        howl.getReplyHowl().add(savedReply);
         howlRepository.save(replyFor);
 
         return replyFor;
     }
+
+
 
     @Override
     public List<Howl> getUserHowls(User user) {

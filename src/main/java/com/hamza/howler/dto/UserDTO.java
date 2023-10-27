@@ -11,14 +11,15 @@ public class UserDTO {
     private String fullName;
     private String email;
     private String profileImage;
+    private String profession;
     private String location;
     private String birthDate;
     private String website;
     private String mobile;
     private String bannerImage;
     private String bio;
-    private boolean isReqUser;
-    private boolean isLoginWithGoogle;
+    private boolean req_user;
+    private boolean login_with_google;
     private List<UserDTO> followers=new ArrayList<>();
     private List<UserDTO> followings=new ArrayList<>();
     private boolean followed;

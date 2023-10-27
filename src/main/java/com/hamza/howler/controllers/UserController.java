@@ -23,7 +23,7 @@ public class UserController {
     public ResponseEntity<UserDTO> getUserProfile(@RequestHeader("Authorization") String jwt)throws UserException{
         User user= userService.findUserProfileByJwt(jwt);
         UserDTO userDTO= UserDTOMapper.toUserDTO(user);
-        userDTO.setReqUser(true);
+        userDTO.setReq_user(true);
         return new ResponseEntity<>(userDTO, HttpStatus.ACCEPTED);
     }
     @GetMapping("/{userId}")
@@ -31,8 +31,7 @@ public class UserController {
         User reqUser= userService.findUserProfileByJwt(jwt);
         User user=userService.findUserById(userId);
         UserDTO userDTO= UserDTOMapper.toUserDTO(user);
-
-        userDTO.setReqUser(UserUtil.isReqUser(reqUser,user));
+        userDTO.setReq_user(UserUtil.isReqUser(reqUser,user));
         userDTO.setFollowed(UserUtil.isFollowedByReqUser(reqUser,user));
         return new ResponseEntity<>(userDTO, HttpStatus.ACCEPTED);
     }
@@ -48,11 +47,12 @@ public class UserController {
         User reqUser= userService.findUserProfileByJwt(jwt);
         User user=userService.updateUser(reqUser.getId(),req);
         UserDTO userDTO= UserDTOMapper.toUserDTO(user);
+        userDTO.setReq_user(true);
         return new ResponseEntity<>(userDTO, HttpStatus.ACCEPTED);
     }
 
     @PutMapping("/{userId}/follow")
-    public ResponseEntity<UserDTO> updateUser(@PathVariable Long userId, @RequestHeader("Authorization") String jwt)throws UserException{
+    public ResponseEntity<UserDTO> followUser(@PathVariable Long userId, @RequestHeader("Authorization") String jwt)throws UserException{
         User reqUser= userService.findUserProfileByJwt(jwt);
         User user=userService.followUser(userId,reqUser);
         UserDTO userDTO= UserDTOMapper.toUserDTO(user);
