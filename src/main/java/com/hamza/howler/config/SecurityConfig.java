@@ -14,6 +14,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class SecurityConfig {
             @Override
             public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
                 CorsConfiguration cfg=new CorsConfiguration();
-                cfg.setAllowedOrigins(List.of("http://localhost:3000"));
+                cfg.setAllowedOrigins(Arrays.asList("http://localhost:3000","https://howler-git-main-fjorn-x.vercel.app","https://howler-fjorn-x.vercel.app","https://howler-snowy.vercel.app"));
                 cfg.setAllowedMethods(Collections.singletonList("*"));
                 cfg.setAllowCredentials(true);
                 cfg.setAllowedHeaders(Collections.singletonList("*"));
