@@ -64,7 +64,8 @@ public class HowlServiceImplementation implements HowlService{
     public void deleteHowlById(Long howlId, Long userId) throws HowlException, UserException {
         Howl howl=findById(howlId);
         if(userId.equals(howl.getUser().getId())){
-            howlRepository.delete(howl);
+//            howlRepository.delete(howl);
+            howlRepository.deleteById(howlId);
         }else{
             throw new UserException("You cannot delete another user's howl");
         }

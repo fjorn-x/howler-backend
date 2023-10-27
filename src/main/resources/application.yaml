@@ -8,3 +8,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+      show-sql: true
+rzp_key_id: rzp_test_C6MyjQb5ed2Jvz
+rzp_key_secret: 3kYCe8qIWA79puTHHcbqImLA
+rzp_currency: INR
+rzp_company_name: Howler

@@ -25,7 +25,6 @@ public class User {
     private String bio;
     private String profession;
 
-
     @Email
     private String email;
     private String password;

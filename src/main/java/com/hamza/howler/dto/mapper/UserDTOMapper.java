@@ -14,7 +14,7 @@ public class UserDTOMapper {
         userDTO.setEmail(user.getEmail());
         userDTO.setFullName(user.getFullName());
         userDTO.setProfession(user.getProfession());
-
+        userDTO.setWebsite(user.getWebsite());
         userDTO.setProfileImage(user.getProfileImage());
         userDTO.setBannerImage(user.getBannerImage());
         userDTO.setBio(user.getBio());

@@ -47,6 +47,7 @@ public class UserController {
         User reqUser= userService.findUserProfileByJwt(jwt);
         User user=userService.updateUser(reqUser.getId(),req);
         UserDTO userDTO= UserDTOMapper.toUserDTO(user);
+        userDTO.setReq_user(true);
         return new ResponseEntity<>(userDTO, HttpStatus.ACCEPTED);
     }
 
