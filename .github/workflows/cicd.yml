@@ -20,17 +20,17 @@ jobs:
       - name: Login to docker hub
         run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
       - name: Build docker image
-        run: docker build -t fjorn/howler .
+        run: docker build -t hamzashaikhcs/howler .
       - name: Publish image to docker hub
-        run: docker push fjorn/howler:latest
+        run: docker push hamzashaikhcs/howler:latest
 
   deploy:
     needs: build
     runs-on: [aws-ec2]
     steps:
       - name: Pull Image from docker hub
-        run: docker pull fjorn/howler:latest
+        run: docker pull hamzashaikhcs/howler:latest
       - name: Delete old container
         run: docker rm -f howler-container
       - name: Run docker container
-        run: docker run -d -p 8080:8080 --name howler-container fjorn/howler:latest
+        run: docker run -d -p 8080:8080 --name howler-container hamzashaikhcs/howler:latest
