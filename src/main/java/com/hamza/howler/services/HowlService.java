@@ -13,7 +13,6 @@ import java.util.List;
 public interface HowlService {
      Howl createHowl(Howl req, User user) throws UserException;
      List<Howl> findAllHowl();
-
      List<Howl> getReplyHowls();
 
      Howl retweet(Long howlId, User user) throws UserException, HowlException;
