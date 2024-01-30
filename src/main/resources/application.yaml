@@ -1,7 +1,8 @@
 server:
+  port: 443
   ssl:
     key-alias: howler-https
-    key-store: classpath:hamza.jks
+    key-store: hamza.jks
     key-store-type: JKS
     key-password: password
 spring:
