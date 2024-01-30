@@ -1,5 +1,5 @@
 server:
-  port: 443
+
   ssl:
     key-alias: howler-https
     key-store: hamza.jks
