@@ -62,6 +62,13 @@ public class AuthController {
         return new ResponseEntity<>(res, HttpStatus.CREATED);
     }
 
+
+    @GetMapping("/testing")
+    public ResponseEntity<AuthResponse> testing(){
+        AuthResponse res=new AuthResponse("working",true);
+        return new ResponseEntity<>(res, HttpStatus.ACCEPTED);
+
+    }
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody User user){
         String email=user.getEmail();
