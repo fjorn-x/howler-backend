@@ -18,7 +18,7 @@ jobs:
       - name: Build Project
         run: mvn clean install -skipTests
       - name: Login to docker hub
-        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{DOCKER_USERNAME}}
+        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
       - name: Build docker image
         run: docker build -t fjorn/howler .
       - name: Publish image to docker hub
