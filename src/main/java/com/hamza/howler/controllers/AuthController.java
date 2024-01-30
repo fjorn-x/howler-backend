@@ -34,13 +34,6 @@ public class AuthController {
     private UserService userService;
     @Autowired
     private CustomUserDetailsServiceImplementation customUserDetailsService;
-
-    @GetMapping("/testing")
-    public ResponseEntity<AuthResponse> testing(){
-        AuthResponse res=new AuthResponse("working",true);
-        return new ResponseEntity<>(res, HttpStatus.ACCEPTED);
-
-    }
     @PostMapping("/signup")
     public ResponseEntity<AuthResponse> createUserHandler(@RequestBody User user) throws UserException {
         String email=user.getEmail();
