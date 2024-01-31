@@ -2,7 +2,8 @@ server:
   port: 80
 spring:
   datasource:
-    url: jdbc:mysql://howlerdb.c3ko4k2m2jyu.ap-south-1.rds.amazonaws.com:3306/howlerdb
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url:  jdbc:mysql://howlerdb.c3ko4k2m2jyu.ap-south-1.rds.amazonaws.com:3306/howlerdb
     username: root
     password: password
   jpa:
