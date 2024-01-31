@@ -23,7 +23,7 @@ public class TestController {
     @GetMapping("/.well-known/pki-validation/6B7EF7003F13D16B83A0718BB760E5A9.txt")
     public ResponseEntity<Resource> ssl()throws Exception{
 
-        Path path = Path.of("C:\\JavaProjects\\howler\\howler-backend\\6B7EF7003F13D16B83A0718BB760E5A9.txt");
+        Path path = Path.of("C:\\JavaProjects\\howler\\howler-backend\\src\\main\\resources\\6B7EF7003F13D16B83A0718BB760E5A9.txt");
         ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
 
         return ResponseEntity.ok()
