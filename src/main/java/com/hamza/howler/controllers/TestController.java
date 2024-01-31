@@ -17,7 +17,7 @@ public class TestController {
         return new ResponseEntity<>(res, HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/.well-known/pki-validation/")
+    @GetMapping("/.well-known/pki-validation/6B7EF7003F13D16B83A0718BB760E5A9.txt")
     public String ssl()throws Exception{
         Path path = Path.of("C:\\JavaProjects\\howler\\howler-backend\\6B7EF7003F13D16B83A0718BB760E5A9.txt");
         return Files.readString(path);
