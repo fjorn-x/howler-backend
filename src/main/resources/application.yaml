@@ -1,11 +1,11 @@
 server:
-  port: 80
+  port: 8443
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url:  jdbc:mysql://howlerdb.c3ko4k2m2jyu.ap-south-1.rds.amazonaws.com:3306/howlerdb
+    url:  jdbc:mysql://localhost:3306/howlerdb
     username: root
-    password: password
+    password: Benten10@
   jpa:
     hibernate:
       ddl-auto: create
